@@ -1,0 +1,117 @@
+{%load static%}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <link rel="stylesheet" type="text/css" href="styles.css"> 
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+    <title>Responsive Form</title>
+    <style>
+        body{
+            background-image:url("https://thumbs.dreamstime.com/b/nlp-natural-language-processing-cognitive-computing-technology-concept-virtual-screen-193616673.jpg");
+    opacity: 100;
+        background-color:blanchedalmond;
+
+        background-position: center;
+        background-repeat: no-repeat; 
+        background-size: cover;
+        width: 100%;
+    }
+    </style>
+   
+</head>
+<body>
+    <div class="container">
+        <div class="div4" style="margin-left: 300px;">
+            <a class="navbar-brand" href="{% url 'index' %}">HOME</a>
+            <a class="navbar-brand" href="{% url 'student' %}">STUDENT</a>
+            <a class="navbar-brand" href="{% url 'teacher' %}">TEACHER</a>
+            <a class="navbar-brand" href="{% url 'course' %}">COURSE</a>
+            <a class="navbar-brand" href="{% url 'about' %}">ABOUT</a>
+            
+            <hr>
+        </div>
+        
+        
+        
+        
+        <div class="row">
+            <div class="col-md-12">
+              
+                       
+                <h2 style="color: rgb(89, 199, 243);margin-left: 230px;">Add course</h2>
+                <div class="row">
+                    <div class="col-md-6" style="margin-left: 200px;">
+                        <form id="myForm"  action="{% url 'save2' %}" method="post">
+                            {% csrf_token %}
+                            {% if msg1 %}
+                            <div class="alert-success">
+                                {{ msg1 }}
+                            </div>
+                            {% endif %}
+                            
+                            <input type="hidden" name="hid" {% if form_data %} value="{{form_data.id}}" {% endif %}>
+                            {% if error %}
+                            <div class="alert-danger">
+                                {{ error }}
+                            </div>
+                            {% endif %}
+                            <div class="form-group">
+                                <label for="name">Course Name:</label>
+                                <input type="text" class="form-control" id="name" name="name" {% if form_data %} value="{{ form_data.name}}" {% endif %}>
+                                
+                              
+                            </div>
+                            
+                            
+                            <div class="form-group">
+                                <label for="address">Descripton:</label>
+                                <textarea class="form-control" id="address" name="address" {% if form_data %} value="{{ form_data.address}}" {% endif %}></textarea>
+                            
+                            <div class="form-group">
+                                <label for="age">Fee:</label>
+                                <input type="number" class="form-control" id="Age" name="age" {% if form_data %} value="{{ form_data.age}}" {% endif %}>
+                            </div>
+                            
+                            {% if form_data %}
+        
+                            <button type="submit" class="btn btn-primary" id="submitBtn">Update</button> 
+                            {% else %}
+                            
+                            <button type="submit" class="btn btn-primary" id="submitBtn">Submit</button>
+                            <button type="reset" class="btn btn-primary" id="resettBtn">Reset</button>
+                    
+                            {% endif %}
+                        </form >       
+                    </div>
+                
+               
+                    </div>
+                    </div>
+                     
+                     <div class="col-md-6">
+                        <div id="result">
+                            </div>
+                            
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="div5" style="margin-left: 800px;">
+                <a class="navbar-brand" href="{% url 'data2' %}">course details</a></div>
+                       
+            </div>
+            </div>
+             
+             
+            </div>
+        </div>
+    </div>
+
+
+    
+    
+</body>
+</html>

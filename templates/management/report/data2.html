@@ -1,0 +1,76 @@
+{%load static%}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+
+    <title>document</title>
+    <style>
+      body{
+          
+  opacity: 100;
+      background-color:blanchedalmond;
+
+      background-position: center;
+      background-repeat: no-repeat; 
+      background-size: cover;
+      width: 100%;
+  }
+  </style>
+</head>
+<body>
+    <div class="container">
+      <div class="div1" style="margin-left: 300px;">
+        <a class="navbar-brand" href="{% url 'index' %}">HOME</a>
+        <a class="navbar-brand" href="{% url 'student' %}">STUDENT</a>
+        <a class="navbar-brand" href="{% url 'teacher' %}">TEACHER</a>
+        <a class="navbar-brand" href="{% url 'course' %}">COURSE</a>
+        <a class="navbar-brand" href="{% url 'about' %}">ABOUT</a>
+        
+        <hr>
+        
+        <div class="row">
+            <div class="col-md-12">
+                <table class="table">
+                    {% if data %}
+                    <thead>
+                      <tr>
+                        <th scope="col">#</th>
+                        <th scope="col">Course Name</th>
+                        
+                        
+                        <th scope="col">Description</th>
+                        <th scope="col">Fee</th>
+                        
+                        
+                      </tr>
+                    </thead>
+                    <tbody>
+                        {% for dt in data %}
+                      <tr>
+                        <th scope="row"> {{ forloop.counter }}</th>
+                        <td>{{ dt.name }}</td>
+                       
+                        
+                        <td>{{ dt.address }}</td>
+                        <td>{{ dt.age }}</td>
+                        
+                        
+                        <td><a href="{% url 'delete2' dt.id %}">Delete</a></td>
+                        <td><a href="{% url 'edit2' dt.id %}">Edit</a></td>
+                         
+                      </tr>
+                      {% endfor %}
+                      {% endif %}
+
+                    </tbody>
+                  </table>
+                </div>
+
+
+    
+    
+    </body>
+ </html
